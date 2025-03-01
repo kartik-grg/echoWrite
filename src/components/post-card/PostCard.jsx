@@ -28,10 +28,10 @@ function PostCard({$id, title, featuredImage, status, content}) {
             />
           </div>
         </div>
-        <h2 className={`text-xl font-semibold ${status === "inactive" ? "text-gray-400" : "dark:text-white text-gray-900"}`}>
+        <h2 className={`text-xl font-semibold ${status === "inactive" ? "text-gray-400" : "text-white"}`}>
           {title}
         </h2>
-        <p className={`mt-2 text-sm text-left ${status === "inactive" ? "text-gray-400" : "dark:text-gray-300 text-gray-600"}`}>
+        <p className={`mt-2 text-sm text-left ${status === "inactive" ? "text-gray-400" : "text-gray-300"}`}>
           {content && parse(truncateContent(content))}
         </p>
       </div>
