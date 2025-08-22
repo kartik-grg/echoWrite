@@ -34,14 +34,14 @@ function Login() {
 
   return (
     <div className='flex items-center justify-center w-full'>
-      <div className={`mx-auto w-full max-w-lg bg-[#2D2D2D] rounded-xl p-10 border border-gray-700 my-12`}>
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
+      <div className={`mx-auto w-full max-w-[90%] sm:max-w-md md:max-w-lg bg-[#2D2D2D] rounded-xl p-6 sm:p-8 border border-gray-700 my-4 sm:my-8`}>
+        <div className="mb-4 flex justify-center">
+          <span className="inline-block w-full max-w-[70px] sm:max-w-[100px]">
             <Logo width="100%" label={false} />
           </span>
         </div>
-        <h2 className="text-center text-2xl font-bold text-gray-100 leading-tight">Sign in to your account</h2>
-        <p className="mt-2 text-center text-base text-gray-400">
+        <h2 className="text-center text-lg sm:text-2xl font-bold text-gray-100 leading-tight">Sign in to your account</h2>
+        <p className="mt-2 text-center text-xs sm:text-base text-gray-400">
           Don&apos;t have any account?&nbsp;
           <Link
             to="/signup"
@@ -50,13 +50,14 @@ function Login() {
             Sign Up
           </Link>
         </p>
-        {error && <p className="text-red-400 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(login)} className='mt-8'>
-          <div className='space-y-5'>
+        {error && <p className="text-red-400 mt-4 text-center text-xs sm:text-base">{error}</p>}
+        <form onSubmit={handleSubmit(login)} className='mt-4 sm:mt-6'>
+          <div className='space-y-3 sm:space-y-5'>
             <Input 
               label= "Email: "
               type= "email"
               placeholder= "Enter email"
+              className="text-sm"
               {...register("email", {
                 required: true,
                 validate: {
@@ -68,13 +69,14 @@ function Login() {
               label="Password: "
               placeholder="Enter Password"
               type="password"
+              className="text-sm"
               {...register("password", {
                 required: true
               })}
             />
             <Button 
               type='submit'
-              className='w-full'
+              className='w-full mt-4 text-sm sm:text-base py-2'
               loadingText='Signing In...'
               isLoading={isLoading}
             >

@@ -7,6 +7,7 @@ import { Input, Button, RTE, Select } from '../index'
 
 function PostForm({post}) {
     const [isLoading, setIsLoading] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(post?.featuredImage ? service.getFilePreview(post.featuredImage) : null)
 
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues:{
@@ -139,13 +140,21 @@ function PostForm({post}) {
                     type="file"
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
-                    {...register("image", { required: !post })}
+                    {...register("image", { 
+                        required: !post,
+                        onChange: (e) => {
+                            const file = e.target.files[0];
+                            if (file) {
+                                setSelectedImage(URL.createObjectURL(file));
+                            }
+                        }
+                    })}
                 />
-                {post && (
+                {selectedImage && (
                     <div className="mb-4 h-48 md:h-56 lg:h-64 flex justify-center mb-8 relative border rounded-xl p-2">
                         <img
-                            src={service.getFilePreview(post.featuredImage)}
-                            alt={post.title}
+                            src={selectedImage}
+                            alt={post ? post.title : "Selected preview"}
                             className="object-contain w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-lg"
                         />
                     </div>

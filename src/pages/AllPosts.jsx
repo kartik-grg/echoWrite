@@ -33,11 +33,11 @@ function AllPosts() {
         return (
             <div className="w-full py-8 mt-4">
                 <Container>
-                    <div className="p-2 w-full text-center">
-                        <h1 className="text-2xl font-bold text-red-500 mb-4">
+                    <div className="p-4 w-full text-center">
+                        <h1 className="text-xl sm:text-2xl font-bold text-red-500 mb-4">
                             Error
                         </h1>
-                        <p className="text-gray-300">{error}</p>
+                        <p className="text-gray-300 px-2">{error}</p>
                         <div className="flex justify-center mt-4">
                             <Button onClick={() => window.location.reload()}>
                                 Reload
@@ -66,7 +66,7 @@ function AllPosts() {
             <div className="w-full py-8 mt-4">
                 <Container>
                     <div className="p-2 w-full text-center">
-                        <h1 className="text-2xl font-bold text-gray-300">
+                        <h1 className="text-xl sm:text-2xl font-bold text-gray-300">
                             No posts available
                         </h1>
                     </div>
@@ -80,7 +80,7 @@ function AllPosts() {
             <Container>
                 <div className='flex flex-wrap'>
                     {posts.map((post) => (
-                        <div key={post.$id} className='p-2 w-1/4'>
+                        <div key={post.$id} className='p-2 pb-6 mb-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4'>
                             <PostCard {...post} />
                         </div>
                     ))}
