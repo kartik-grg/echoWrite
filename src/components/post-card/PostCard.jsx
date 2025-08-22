@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom'
 import service from '../../appwrite/config'
 import parse from 'html-react-parser'
 
-function PostCard({$id, title, featuredImage, status, content}) {
-  const truncateContent = (text) => {
-    const words = text.split(' ').slice(0, 12);
-    return words.join(' ') + (words.length >= 12 ? '...' : '');
-  };
+function PostCard({$id, title, featuredImage, status, content, userName, $createdAt}) {
 
   return (
     <Link to={`/post/${$id}`}>
@@ -31,9 +27,11 @@ function PostCard({$id, title, featuredImage, status, content}) {
         <h2 className={`text-xl font-semibold ${status === "inactive" ? "text-gray-400" : "text-white"}`}>
           {title}
         </h2>
-        <p className={`mt-2 text-sm text-left ${status === "inactive" ? "text-gray-400" : "text-gray-300"}`}>
-          {content && parse(truncateContent(content))}
-        </p>
+        <div className="flex items-center mt-1 mb-2">
+          <p className={`text-xs ${status === "inactive" ? "text-gray-500" : "text-gray-400"}`}>
+            By: {userName || "Unknown Author"} • {new Date($createdAt).toLocaleDateString()}
+          </p>
+        </div>
       </div>
     </Link>
   )

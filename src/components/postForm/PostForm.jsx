@@ -32,7 +32,8 @@ function PostForm({post}) {
 
             const dbPost = await service.updatePost( post.$id, {
                 ...data,
-                featuredImage : file ? file.$id : undefined
+                featuredImage : file ? file.$id : post.featuredImage,
+                userName: post.userName || userData.name || 'Unknown User'
             })
 
             if(dbPost){
@@ -49,6 +50,7 @@ function PostForm({post}) {
                 const dbPost = await service.createPost({
                     ...data,
                     userId: userData.$id,
+                    userName: userData.name || 'Unknown User',
                 })
                 if (dbPost) {
                     setIsLoading(false)

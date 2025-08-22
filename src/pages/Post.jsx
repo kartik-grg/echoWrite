@@ -70,9 +70,18 @@ export default function Post() {
                 </div>
 
                 <div className="w-full mb-8">
-                    <h1 className={`text-3xl font-bold mb-4 `}>
+                    <h1 className={`text-3xl font-bold mb-2`}>
                         {post.title}
                     </h1>
+                    <div className="flex items-center mb-4 text-gray-400 text-sm">
+                        <span>By: {post.userName || "Unknown User"}</span>
+                        <span className="mx-2">•</span>
+                        <span>{new Date(post.$createdAt).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        })}</span>
+                    </div>
                     {post.status === "inactive" && (
                         <p className="text-red-400 mb-4">
                             This post is currently not visible to other users
