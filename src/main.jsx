@@ -11,6 +11,7 @@ import AddPost from './pages/AddPost.jsx'
 import EditPosts from './pages/EditPosts.jsx'
 import Post from './pages/Post.jsx'
 import YourPosts from './pages/YourPosts.jsx'
+import { ThemeProvider } from './context/ThemeContext'
 
 const router = createBrowserRouter([
   {
@@ -71,7 +72,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
     <Provider store={store} >
-      <RouterProvider router={router} />
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </Provider>
   // </StrictMode>,
 )
