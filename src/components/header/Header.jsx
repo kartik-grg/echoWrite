@@ -51,21 +51,23 @@ function Header() {
               <Logo />
             </Link>
           </div>
-          
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className='md:hidden p-2 text-secondary-text hover:text-primary-text focus:outline-none'
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-          
+          {/* Mobile Menu Button and Theme Toggle */}
+          <div className="flex items-center md:hidden gap-2">
+            <ThemeToggle />
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className='p-2 text-secondary-text hover:text-primary-text focus:outline-none'
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
           {/* Desktop Navigation */}
           <ul className='hidden md:flex items-center gap-x-4'>
             {
@@ -116,10 +118,7 @@ function Header() {
                   <LogoutBtn className="w-full flex justify-start" />
                 </li>
               )}
-              <li className="w-full px-4 py-2 flex">
-                <ThemeToggle />
-                <span className="ml-2 text-secondary-text">Toggle Theme</span>
-              </li>
+              {/* Removed ThemeToggle label from mobile nav */}
             </ul>
           </div>
         )}

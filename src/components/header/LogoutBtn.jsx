@@ -28,9 +28,10 @@ function LogoutBtn() {
       isLoading={isLoading}
       loadingText="Logging out..."
       bgColor="bg-transparent"
-      className="px-6 py-2 text-gray-300 font-medium rounded-full
-      hover:text-white hover:bg-[#3D3D3D] hover:scale-105
-      active:scale-95 active:bg-[#2D2D2D]"
+      textColor="text-secondary-text dark:text-secondary-text"
+      className="px-6 py-2 font-medium rounded-full
+        hover:text-accent dark:hover:text-accent hover:bg-secondary-bg hover:scale-105
+        active:scale-95 active:bg-secondary"
     >
       Logout
     </Button>

@@ -58,7 +58,7 @@ export default function Post() {
                     {isAuthor && (
                         <div className="flex gap-3">
                             <Link to={`/editPost/${post.$id}`}>
-                                <Button bgColor="bg-green-500">
+                                <Button bgColor="bg-accent-hover">
                                     Edit
                                 </Button>
                             </Link>
@@ -73,7 +73,7 @@ export default function Post() {
                     <h1 className={`text-3xl font-bold mb-2`}>
                         {post.title}
                     </h1>
-                    <div className="flex items-center mb-4 text-gray-400 text-sm">
+                    <div className="flex items-center mb-4 text-secondary-text text-sm">
                         <span>By: {post.userName || "Unknown User"}</span>
                         <span className="mx-2">•</span>
                         <span>{new Date(post.$createdAt).toLocaleDateString('en-US', {
@@ -99,7 +99,7 @@ export default function Post() {
 
                         {post.status === "inactive" && (
                             <div className="absolute right-4 top-4">
-                                <span className="px-4 py-2 bg-red-500/80 text-white rounded-lg font-medium">
+                                <span className="px-4 py-2 bg-red-500/80 text-primary-text rounded-lg font-medium">
                                     Inactive Post
                                 </span>
                             </div>

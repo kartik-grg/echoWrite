@@ -1,17 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import { Controller } from 'react-hook-form'
 
 function RTE({ name, control, defaultValue="", label }) {
   const [isEditorLoading, setIsEditorLoading] = useState(true)
+  const [key, setKey] = useState(Date.now()) // Add key for forcing re-render
+  const editorRef = useRef(null)
+  const [theme, setTheme] = useState(document.documentElement.classList.contains('dark') ? 'dark' : 'light')
+
+  // Check for theme changes
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(mutation => {
+        if (mutation.attributeName === 'class') {
+          const newTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+          if (newTheme !== theme) {
+            setTheme(newTheme)
+            // Force re-render of the editor on theme change
+            setKey(Date.now())
+          }
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, { attributes: true });
+    return () => observer.disconnect();
+  }, [theme]);
 
   return (
     <div className='w-full'> 
-        { label && <label className='inline-block mb-1 pl-1'> {label} </label>} 
+        { label && <label className='inline-block mb-1 pl-1 text-secondary-text'> {label} </label>} 
         
         {isEditorLoading && (
-          <div className="w-full h-[500px] flex items-center justify-center bg-gray-800 rounded-lg border border-gray-700">
-            <p className="text-gray-400">Loading editor...</p>
+          <div className="w-full h-[500px] flex items-center justify-center bg-secondary rounded-lg border border-border-color">
+            <p className="text-secondary-text">Loading editor...</p>
           </div>
         )}
     
@@ -20,6 +42,7 @@ function RTE({ name, control, defaultValue="", label }) {
             control={control}
             render = { ({field: {onChange} }) => (
                 <Editor
+                key={key} // Add key for re-rendering on theme change
                 apiKey='86myfq0nrqf6hrj1lsvj1i7hhi24ra64025nezurjsr03wcj'
                 initialValue={defaultValue}
                 init={{
@@ -37,11 +60,22 @@ function RTE({ name, control, defaultValue="", label }) {
                     'bold italic forecolor | alignleft aligncenter ' +
                     'alignright alignjustify | bullist numlist outdent indent | ' +
                     'removeformat | help',
-                  skin: 'oxide-dark',
-                  content_css: 'dark',
-                  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; background-color: #1F2937; color: #E5E7EB; } body.mce-content-body[data-mce-placeholder]:not([contenteditable="false"]):before { color: #9CA3AF; }',
+                  skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
+                  content_css: theme === 'dark' ? 'dark' : 'default',
+                  content_style: `body { 
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; 
+                    font-size: 16px; 
+                    background-color: ${theme === 'dark' ? '#1a1a1a' : '#ffffff'}; 
+                    color: ${theme === 'dark' ? '#f3f4f6' : '#1a1a1a'}; 
+                  } 
+                  body.mce-content-body[data-mce-placeholder]:not([contenteditable="false"]):before { 
+                    color: ${theme === 'dark' ? '#9ca3af' : '#4b5563'}; 
+                  }`,
                 }}
-                onInit={() => setIsEditorLoading(false)}
+                onInit={(evt, editor) => {
+                  setIsEditorLoading(false);
+                  editorRef.current = editor;
+                }}
                 onEditorChange={onChange}
                 className={isEditorLoading ? 'hidden' : 'block'}
               />
