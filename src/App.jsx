@@ -25,13 +25,13 @@ function App() {
   }, [])
   
   return loading ? (
-        <div className="w-full min-h-screen flex flex-col bg-[#1a1a1a] text-gray-200">
-            <Container>
-                <LoadingSpinner />
-            </Container>
-        </div>
-    ):(
-    <div className='min-h-screen flex flex-col bg-[#1a1a1a] text-gray-200'>
+    <div className="w-full min-h-screen flex flex-col bg-primary text-primary-text">
+        <Container>
+            <LoadingSpinner />
+        </Container>
+    </div>
+  ) : (
+    <div className='min-h-screen flex flex-col bg-primary text-primary-text'>
       <div className='w-full'>
         <Header />
       </div>

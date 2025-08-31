@@ -1,33 +1,29 @@
 import React, { forwardRef, useId } from 'react'
 
-const Select = ({ 
-    label, 
-    className="", 
-    options = [], 
+function Select({
+    options,
+    label,
+    className = "",
     ...props
-}, ref) => {
-  const id = useId();
+}, ref) {
+    const id = useId()
   return (
     <div className='w-full'>
-      {label && <label htmlFor={id} className="inline-block mb-1 pl-1">{label}</label>}
-      <select
-        id={id}
-        ref={ref}
-        className={`px-3 py-2 rounded-lg bg-gray-700 text-gray-100 outline-none focus:bg-gray-600 duration-200 border border-gray-600 w-full ${className}`}
-        {...props}
-      >
-        {options?.map((option) => (
-          <option 
-            value={option} 
-            key={option}
-            className="bg-gray-700"
-          >
-            {option}
-          </option>
-        ))}
-      </select>
+        {label && <label htmlFor={id} className="inline-block mb-1 pl-1 text-secondary-text">{label}</label>}
+        <select
+            {...props}
+            id={id}
+            ref={ref}
+            className={`px-3 py-2 rounded-lg bg-primary border-2 border-border-color focus:border-accent outline-none w-full text-primary-text appearance-none ${className}`}
+        >
+            {options?.map((option) => (
+                <option key={option} value={option} className="bg-primary text-primary-text">
+                    {option}
+                </option>
+            ))}
+        </select>
     </div>
-  );
+  )
 }
 
 export default forwardRef(Select);

@@ -12,6 +12,9 @@ import RTE from "./RTE";
 import PostForm from "./postForm/PostForm";
 import AuthLayout from "./AuthLayout";
 import LoadingSpinner from "./LoadingSpinner"
+import ThemeToggle from "./ThemeToggle";
+
+// Just checking file content
 
 export { 
     Header, 
@@ -27,5 +30,6 @@ export {
     PostForm,
     AuthLayout,
     Button,
-    LoadingSpinner
+    LoadingSpinner,
+    ThemeToggle
 };

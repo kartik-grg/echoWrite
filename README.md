@@ -8,10 +8,11 @@ A feature-rich blogging platform built with React, Vite, and Appwrite, featuring
 - 📝 Create, Edit, and Delete Blog Posts
 - 📸 Image Upload Support
 - 💫 Rich Text Editor
-- 🌓 Dark Mode Design
+- 🌓 Light & Dark Mode Toggle
 - 🎯 Status Management (Active/Inactive Posts)
 - ⚡ Real-time Preview
 - 📱 Responsive Design
+- 🎨 Theme System with CSS Variables
 
 ## Tech Stack
 
@@ -60,8 +61,11 @@ npm run dev
 src/
 ├── appwrite/        # Appwrite configuration and services
 ├── components/      # Reusable UI components
+├── context/         # React context providers
+├── docs/           # Documentation files
 ├── pages/          # Page components
 ├── store/          # Redux store configuration
+├── styles/         # Global styles and theme variables
 └── assets/         # Static assets
 ```
 

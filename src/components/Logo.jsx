@@ -9,8 +9,8 @@ function Logo({
     <div className="flex items-center gap-2 rounded">
       <img src={logoImg} alt="echoWrite logo" className='rounded-full' style={{width}} />
       {label === true && 
-        <span className="text-2xl font-bold text-white">
-          echo<span className="text-violet-400">Write</span>
+        <span className="text-2xl font-bold text-primary-text select-none">
+          echo<span className="text-accent">Write</span>
         </span>
       }
     </div>

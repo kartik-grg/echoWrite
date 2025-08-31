@@ -33,7 +33,7 @@ function PostForm({post}) {
             const dbPost = await service.updatePost( post.$id, {
                 ...data,
                 featuredImage : file ? file.$id : post.featuredImage,
-                userName: post.userName || userData.name || 'Unknown User'
+                                userName: post.userName || userData.name || 'Unknown User'
             })
 
             if(dbPost){
@@ -140,7 +140,7 @@ function PostForm({post}) {
                 <Input
                     label="Featured Image :"
                     type="file"
-                    className="mb-4"
+                    className="mb-4 file:bg-secondary-bg file:border file:border-border-color file:text-primary-text file:px-2 file:py-1 file:rounded-md file:cursor-pointer hover:file:bg-secondary hover:file:border-accent file:transition-all text-secondary-text"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { 
                         required: !post,
@@ -153,7 +153,7 @@ function PostForm({post}) {
                     })}
                 />
                 {selectedImage && (
-                    <div className="mb-4 h-48 md:h-56 lg:h-64 flex justify-center mb-8 relative border rounded-xl p-2">
+                    <div className="mb-4 h-48 md:h-56 lg:h-64 flex justify-center mb-8 relative border border-border-color rounded-xl p-2">
                         <img
                             src={selectedImage}
                             alt={post ? post.title : "Selected preview"}
@@ -178,7 +178,7 @@ function PostForm({post}) {
         <div className="px-2">
             <Button 
                 type="submit" 
-                bgColor={post ? "bg-green-500" : undefined} 
+                bgColor={post ? "bg-accent-hover" : "bg-button-primary"} 
                 className="w-full max-w-xs m-auto"
                 isLoading={isLoading}
                 loadingText={post ? "Updating..." : "Submitting..."}

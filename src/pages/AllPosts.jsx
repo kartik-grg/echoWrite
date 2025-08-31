@@ -37,7 +37,7 @@ function AllPosts() {
                         <h1 className="text-xl sm:text-2xl font-bold text-red-500 mb-4">
                             Error
                         </h1>
-                        <p className="text-gray-300 px-2">{error}</p>
+                        <p className="text-primary-text px-2">{error}</p>
                         <div className="flex justify-center mt-4">
                             <Button onClick={() => window.location.reload()}>
                                 Reload
@@ -66,7 +66,7 @@ function AllPosts() {
             <div className="w-full py-8 mt-4">
                 <Container>
                     <div className="p-2 w-full text-center">
-                        <h1 className="text-xl sm:text-2xl font-bold text-gray-300">
+                        <h1 className="text-xl sm:text-2xl font-bold text-primary-text">
                             No posts available
                         </h1>
                     </div>
